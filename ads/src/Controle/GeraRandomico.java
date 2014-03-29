@@ -6,8 +6,6 @@
 
 package Controle;
 
-import Interfaces.IGeraRandomico;
-
 /**
  *
  * @author Gustavo

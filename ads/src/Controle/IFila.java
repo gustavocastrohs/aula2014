@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package Interfaces;
+package Controle;
 
 /**
  *
  * @author Gustavo
  */
-public interface IGeraRandomico {
-    public double proximoRandomico();
+public class IFila {
+   
 }

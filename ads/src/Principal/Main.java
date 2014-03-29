@@ -3,7 +3,7 @@ package Principal;
 
 
 
-import Controle.ItemServidor;
+import Controle.Item;
 import Controle.Projeto;
 import java.util.ArrayList;
 
@@ -24,24 +24,23 @@ public class Main {
     public static  Projeto p;
     public static void main(String[] args) {
      
-        ArrayList<ItemServidor> lista = new ArrayList<>();
+        ArrayList<Item> lista = new ArrayList<>();
 
-        lista.add(new ItemServidor("inicio", 0,0));
-        lista.add(new ItemServidor("fim", 0,0));
-        lista.add(new ItemServidor("S1", 3,1));
-
+//        lista.add(new Item("inicio", 0,0));
+//        lista.add(new Item("fim", 0,0));
+//        lista.add(new Item("S1", 3,1));
+//
 
     
         p = new Projeto();
-        p.setLista_itens(lista);
+   //     p.setLista_itens(lista);
        
-        addAresta("inicio", "S1", "CH1", 3, 7, 1);
-        addAresta("S1", "fim", "SA1", 2, 3, 1);
+//        addAresta("inicio", "S1", "CH1", 3, 7, 1);
+//        addAresta("S1", "fim", "SA1", 2, 3, 1);
 
        // System.out.println( p.calcula());
        p.executa(1000000);
-        
-        p.imprimeGrafico();
+    
         
         //ArrayList<ItemDeProjeto> encontrarORaiz = p.encontrarORaiz();
    //     g.excuta(encontrarORaiz.get(0));
@@ -49,7 +48,7 @@ public class Main {
     }
 
     private static void addAresta(String orgiem, String destino,String nomeAresta, int tempo1, int tempo2, double probabilidade ){
-        p.addAresta(orgiem, destino,nomeAresta, tempo1, tempo2, probabilidade);
+    //    p.addAresta(orgiem, destino,nomeAresta, tempo1, tempo2, probabilidade);
      
       
     }

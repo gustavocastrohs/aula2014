@@ -4,12 +4,18 @@
  * and open the template in the editor.
  */
 
-package Interfaces;
+package Controle;
+
+import java.util.ArrayList;
 
 /**
  *
- * @author 09201801
+ * @author Gustavo
  */
-public interface IOperacoesDoPrograma { 
-     public double calculaRandomicoProblema(double A,double B);
+public  interface IItem {
+
+    public String getNome();
+    public ArrayList<IItem> getListaDeArestas();
+    
+    
 }
