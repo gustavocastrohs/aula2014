@@ -6,16 +6,13 @@
 
 package Controle;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Gustavo
  */
-public  interface IItem {
-
-    public String getNome();
-    public ArrayList<IItem> getListaDeArestas();
+public interface IItemAgenda {
     
+      public double getTempo();
+      public IFilaServidor getObjetoASerExecutado();
     
 }

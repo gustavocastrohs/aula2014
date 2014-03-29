@@ -3,8 +3,8 @@ package Principal;
 
 
 
-import Controle.Item;
-import Controle.Projeto;
+
+import Controle.*;
 import java.util.ArrayList;
 
 /*
@@ -24,11 +24,11 @@ public class Main {
     public static  Projeto p;
     public static void main(String[] args) {
      
-        ArrayList<Item> lista = new ArrayList<>();
+        ArrayList<IFila> lista = new ArrayList<>();
 
-//        lista.add(new Item("inicio", 0,0));
-//        lista.add(new Item("fim", 0,0));
-//        lista.add(new Item("S1", 3,1));
+//        lista.add(new Fila("inicio", 0,0));
+//        lista.add(new Fila("fim", 0,0));
+//        lista.add(new Fila("S1", 3,1));
 //
 
     
@@ -39,7 +39,7 @@ public class Main {
 //        addAresta("S1", "fim", "SA1", 2, 3, 1);
 
        // System.out.println( p.calcula());
-       p.executa(1000000);
+       p.executa(13);
     
         
         //ArrayList<ItemDeProjeto> encontrarORaiz = p.encontrarORaiz();

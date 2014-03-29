@@ -3,44 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controle;
 
 /**
  *
  * @author Gustavo
  */
-public class GeraRandomico implements IGeraRandomico{
-   
+public class GeraRandomico implements IGeraRandomico {
+
     private static GeraRandomico instancia;
-    
-    private double a ;
+
+    private double a;
     private double c;
     private double m;
     private double s;
-    
-    public static GeraRandomico getInstance()  {
+
+    public static GeraRandomico getInstance() {
         try {
 
             if (instancia == null) {
                 instancia = new GeraRandomico();
             }
             return instancia;
+        } catch (ExceptionInInitializerError e) {
 
-
-    }catch(ExceptionInInitializerError e){
-     
-        
-    }
+        }
         return null;
     }
-    private GeraRandomico(){
+
+    private GeraRandomico() {
         this.c = 4579;
-        this.a = 16657807; 
-        this.m  = 2147483647;
+        this.a = 16657807;
+        this.m = 2147483647;
         this.s = 1567177967;
-        
-    
+
     }
 
     public GeraRandomico(double a, double c, double m, double s) {
@@ -50,15 +46,13 @@ public class GeraRandomico implements IGeraRandomico{
         this.s = s;
     }
 
-    
     @Override
     public double proximoRandomico() {
-     
-        s = (a*s + c ) % m;
-        
-        return s/m;
-    }
 
+        s = (a * s + c) % m;
+
+        return s / m;
+    }
 
     public double getA() {
         return a;
@@ -76,5 +70,4 @@ public class GeraRandomico implements IGeraRandomico{
         return s;
     }
 
-    
 }

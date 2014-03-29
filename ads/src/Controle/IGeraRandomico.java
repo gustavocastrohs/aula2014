@@ -11,5 +11,9 @@ package Controle;
  * @author Gustavo
  */
 public interface IGeraRandomico {
+    /**
+     * Pega o proximo numero randomico atraves da instancia
+     * @return 
+     */
     public double proximoRandomico();
 }

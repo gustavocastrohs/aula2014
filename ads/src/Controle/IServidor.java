@@ -11,19 +11,19 @@ package Controle;
  */
 public interface IServidor {
 
-    public void aumentaServidoresUsadosEm1();
 
-    public void reduzServidoresUsadosEm1();
-
-    public int getServidoresUsados();
-
+/**
+ * retorna a quantidade de servidores usados
+ * @return 
+ */
     public void reduzACapacidadeEm1();
 
     public void aumentaACapacidadeEm1();
 
-    public int getCapacidadeUsada();
+    public double getCapacidadeUsada();
 
-    public int getQuantidadeDeServidores();
+    public double getQuantidadeDeServidores();
  
-    public int getCapacidade();
+    public double getCapacidade();
+    public String getNome();
 }

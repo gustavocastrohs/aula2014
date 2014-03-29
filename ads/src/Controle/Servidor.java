@@ -5,19 +5,22 @@
  */
 package Controle;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Gustavo
  */
 public class Servidor implements IServidor {
 
-    private int capacidade;
-    private int quantidadeDeServidores;
-    private int capacidadeUsada;
-    private int servidoresUsados;
+    private double capacidade;
+    private double quantidadeDeServidores;
+    private double capacidadeUsada;
+    private double servidoresUsados;
     private String nome;
+    
 
-    public Servidor(String nome, int capacidade, int quantidadeDeServidores) {
+    public Servidor(String nome, double capacidade, double quantidadeDeServidores) {
         this.nome = nome;
         this.capacidade = capacidade;
         this.quantidadeDeServidores = quantidadeDeServidores;
@@ -26,17 +29,17 @@ public class Servidor implements IServidor {
     }
 
     @Override
-    public int getCapacidade() {
+    public double getCapacidade() {
         return capacidade;
     }
 
     @Override
-    public int getQuantidadeDeServidores() {
+    public double getQuantidadeDeServidores() {
         return quantidadeDeServidores;
     }
 
     @Override
-    public int getCapacidadeUsada() {
+    public double getCapacidadeUsada() {
         return capacidadeUsada;
     }
 
@@ -50,18 +53,11 @@ public class Servidor implements IServidor {
         this.capacidadeUsada -= 1;
     }
 
-    @Override
-    public int getServidoresUsados() {
-        return servidoresUsados;
-    }
+
+
 
     @Override
-    public void aumentaServidoresUsadosEm1() {
-        this.servidoresUsados += 1;
-    }
-    
-    @Override
-    public void reduzServidoresUsadosEm1() {
-        this.servidoresUsados -= 1;
+    public String getNome() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
