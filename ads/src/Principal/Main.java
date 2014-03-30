@@ -4,6 +4,7 @@ package Principal;
 
 
 
+import Controle.Interfaces.*;
 import Controle.*;
 import java.util.ArrayList;
 
@@ -21,29 +22,24 @@ public class Main {
      * @param args the command line arguments
      */
 
-    public static  Projeto p;
-    public static void main(String[] args) {
-     
-        ArrayList<IFila> lista = new ArrayList<>();
-
-//        lista.add(new Fila("inicio", 0,0));
-//        lista.add(new Fila("fim", 0,0));
-//        lista.add(new Fila("S1", 3,1));
-//
-
+    public static  IProjeto p;
     
-        p = new Projeto();
-   //     p.setLista_itens(lista);
-       
-//        addAresta("inicio", "S1", "CH1", 3, 7, 1);
-//        addAresta("S1", "fim", "SA1", 2, 3, 1);
-
-       // System.out.println( p.calcula());
+    public static void main(String[] args) {
+    p = new Projeto();
+    IServidor s = new Servidor("1",1,3);
+    IFila f = new Fila("CH1", 1, 2, 0);
+    IFilaServidor fs = new FilaServidor(f, s);
+    if (f.getTipoDeFila() ==0){
+        f.addEnventoDeEntrada(fs);
+    }
+    p.adicionaNaAgenda(new ItemAgenda(3, fs));
+    p.adicionaServidor(s);
+    
        p.executa(13);
     
-        
-        //ArrayList<ItemDeProjeto> encontrarORaiz = p.encontrarORaiz();
-   //     g.excuta(encontrarORaiz.get(0));
+
+       
+       
         
     }
 

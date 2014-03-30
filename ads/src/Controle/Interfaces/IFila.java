@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controle;
+package Controle.Interfaces;
 
 import java.util.ArrayList;
 
@@ -45,5 +45,10 @@ public interface IFila {
     public void setEventosDeEntrada(ArrayList<IFilaServidor> eventosDeEntrada);
     
     public void setEventosDeSaida(ArrayList<IFilaServidor> eventosDeSaida);
+    
+    public void setEventosDePassagem(ArrayList<IFilaServidor> eventosDeSaida);
+    
+    public ArrayList<IFilaServidor> getEventosDePassagem();
 
+    public void addEnventoDeEntrada(IFilaServidor fs);
 }

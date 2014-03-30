@@ -6,6 +6,9 @@
 
 package Controle;
 
+import Controle.Interfaces.IFilaServidor;
+import Controle.Interfaces.IItemAgenda;
+
 /**
  *
  * @author Gustavo

@@ -1,6 +1,8 @@
 package Controle;
 
 
+import Controle.Interfaces.IFilaServidor;
+import Controle.Interfaces.IFila;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -17,18 +19,17 @@ import java.util.LinkedList;
  */
 public class  Fila implements IFila{
 
-    private String nome;   
+    private String nome;
     private double tempo1;
     private double tempo2;
-
-
     private double tipoDeFila;
-    
-    
-    private ArrayList<IFilaServidor> eventosDeEntrada = new ArrayList<>();
+    private ArrayList<IFilaServidor> eventosDeEntrada;
     private ArrayList<IFilaServidor> eventosDeSaida = new ArrayList<>();
+    private ArrayList<IFilaServidor> eventosDePassagem;
 
     public Fila(String nome, double tempo1, double tempo2,double tipoDeFila) {
+        this.eventosDeEntrada = new ArrayList<>();
+        this.eventosDePassagem = new ArrayList<>();
         this.nome = nome;
         this.tempo1 = tempo1;
         this.tempo2 = tempo2;
@@ -93,7 +94,20 @@ public class  Fila implements IFila{
     public void setEventosDeSaida(ArrayList<IFilaServidor> eventosDeSaida) {
         this.eventosDeSaida = eventosDeSaida;
     }
-    
+
+    public ArrayList<IFilaServidor> getEventosDePassagem() {
+        return eventosDePassagem;
+    }
+
+    @Override
+    public void setEventosDePassagem(ArrayList<IFilaServidor> eventosDePassagem) {
+      this.eventosDePassagem = eventosDePassagem;
+    }
+
+       public void addEnventoDeEntrada(IFilaServidor fs) {
+        eventosDeEntrada.add(fs);
+    }
+
 
     
     

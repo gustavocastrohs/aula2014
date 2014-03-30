@@ -5,6 +5,8 @@
  */
 package Controle;
 
+import Controle.Interfaces.IGeraRandomico;
+
 /**
  *
  * @author Gustavo
@@ -19,17 +21,14 @@ public class GeraRandomico implements IGeraRandomico {
     private double s;
 
     public static GeraRandomico getInstance() {
-        try {
+ 
 
             if (instancia == null) {
                 instancia = new GeraRandomico();
             }
             return instancia;
-        } catch (ExceptionInInitializerError e) {
 
-        }
-        return null;
-    }
+       }
 
     private GeraRandomico() {
         this.c = 4579;

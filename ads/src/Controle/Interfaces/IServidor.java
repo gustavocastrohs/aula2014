@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controle;
+package Controle.Interfaces;
 
 /**
  *
@@ -13,17 +13,20 @@ public interface IServidor {
 
 
 /**
- * retorna a quantidade de servidores usados
- * @return 
- */
+     * retorna a quantidade de servidores usados
+     *
+     * @return
+     */
     public void reduzACapacidadeEm1();
 
     public void aumentaACapacidadeEm1();
 
-    public double getCapacidadeUsada();
+    public int getCapacidadeUsada();
 
-    public double getQuantidadeDeServidores();
- 
-    public double getCapacidade();
+    public int getQuantidadeDeServidores();
+
+    public int getCapacidade();
+
     public String getNome();
+      
 }

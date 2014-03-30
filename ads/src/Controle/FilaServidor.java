@@ -6,6 +6,10 @@
 
 package Controle;
 
+import Controle.Interfaces.IFilaServidor;
+import Controle.Interfaces.IServidor;
+import Controle.Interfaces.IFila;
+
 /**
  *
  * @author Gustavo

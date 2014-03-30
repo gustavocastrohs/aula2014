@@ -4,15 +4,17 @@
  * and open the template in the editor.
  */
 
-package Controle;
+package Controle.Interfaces;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author Gustavo
  */
-public interface IItemAgenda {
+public interface IObjetooContavel {
     
-      public double getTempo();
-      public IFilaServidor getObjetoASerExecutado();
+        public ArrayList<Double> getLista();
+        public IServidor getServidor();
     
 }
