@@ -4,3 +4,4 @@
 *.jar
 *.war
 *.ear
+/SGBDTF/nbproject/private/

@@ -108,6 +108,16 @@ public class  Fila implements IFila{
         eventosDeEntrada.add(fs);
     }
 
+    @Override
+    public void addEnventoDePassagem(IFilaServidor fs) {
+        eventosDePassagem.add(fs);
+    }
+
+    @Override
+    public void addEnventoDeSaida(IFilaServidor fs) {
+        eventosDeSaida.add(fs);
+    }
+
 
     
     

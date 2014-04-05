@@ -27,11 +27,13 @@ public class Contabilizador implements IContabilizador{
 
             if (o.getServidor().getNome().equalsIgnoreCase(servAntes.getNome())) {
                 if (servAntes.getCapacidadeUsada() < servDepois.getCapacidadeUsada()) {
-                    o.getLista().set(servDepois.getCapacidadeUsada(), tempo+o.getLista().get(servDepois.getCapacidadeUsada()));
+                    o.getLista().set(servAntes.getCapacidadeUsada(), tempo+(o.getLista().get(servDepois.getCapacidadeUsada())));
                 }
+                break;
             }
 
         }
+        
     }
 
     public ArrayList<IObjetooContavel> getLista() {
@@ -42,9 +44,14 @@ public class Contabilizador implements IContabilizador{
         this.lista = lista;
     }
 
-public void cadastraServidores (IServidor server){
+    /**
+     *
+     * @param server
+     */
+    @Override
+    public void cadastraServidores (IServidor server){
     IObjetooContavel oc = new ObjetooContavel(server);
-lista.add(oc);
+    lista.add(oc);
 }
 
      public static Contabilizador getInstance() {
@@ -57,7 +64,14 @@ lista.add(oc);
     }
      
      private Contabilizador(){
-     
+        lista = new ArrayList<>();
      }
+
+    @Override
+    public void cadastraServidores(ArrayList<IServidor> lista) {
+        for (IServidor s : lista) {
+            cadastraServidores(s);
+        }
+    }
 
 }

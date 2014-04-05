@@ -15,4 +15,5 @@ import java.util.ArrayList;
 public interface IContabilizador {
    public void contabilia(IServidor a, IServidor b,double tempo);
    public void cadastraServidores (IServidor server);
+   public void cadastraServidores (ArrayList<IServidor> lista);
 }

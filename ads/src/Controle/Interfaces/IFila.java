@@ -51,4 +51,6 @@ public interface IFila {
     public ArrayList<IFilaServidor> getEventosDePassagem();
 
     public void addEnventoDeEntrada(IFilaServidor fs);
+    public void addEnventoDePassagem(IFilaServidor fs);
+    public void addEnventoDeSaida(IFilaServidor fs);
 }

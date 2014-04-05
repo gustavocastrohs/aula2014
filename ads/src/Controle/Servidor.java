@@ -29,6 +29,13 @@ public class Servidor implements IServidor {
         this.servidoresUsados = 0;
     }
 
+    public Servidor(IServidor s) {
+      this.nome = s.getNome();
+      this.capacidadeUsada= s.getCapacidadeUsada();
+      this.quantidadeDeServidores = s.getQuantidadeDeServidores();
+      this.capacidade = s.getCapacidade();
+    }
+
     @Override
     public int getCapacidade() {
         return capacidade;

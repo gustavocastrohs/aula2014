@@ -21,7 +21,7 @@ public class ObjetooContavel implements IObjetooContavel{
     public ObjetooContavel(IServidor servidor) {
         this.servidor = servidor;
         lista = new ArrayList<>();
-        for (int i = 0; i < servidor.getCapacidade(); i++) {
+        for (int i = 0; i <= servidor.getCapacidade(); i++) {
             lista.add(0.0);
         }
     }

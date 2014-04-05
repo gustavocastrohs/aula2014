@@ -5,13 +5,9 @@
 package Controle;
 
 import Controle.Interfaces.*;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
-
 import java.util.ArrayList;
-import java.util.Currency;
-import java.util.Locale;
+
 
 /**
  *
@@ -28,29 +24,41 @@ public class Projeto implements IProjeto {
     private GeraRandomico g;
     //static double valortotal = 0;
 
+    
+    private static Projeto instancia;
+
+    public static Projeto getInstance() {
+
+        if (instancia == null) {
+            instancia = new Projeto();
+        }
+        return instancia;
+
+    }
+
+    private Projeto() {
+        g = GeraRandomico.getInstance();
+        contabilizador = Contabilizador.getInstance();
+         
+    }
+
 
     @Override
     public void executa(double quantidadeDeExecucoes) {
-        g = GeraRandomico.getInstance();
-        contabilizador  = Contabilizador.getInstance();
+       
+        
         double i = 0;
-        DecimalFormat fmt = new DecimalFormat("0.0000");  
         
         for (IItemAgenda item : comeco) {
             selecionaTipo(item.getObjetoASerExecutado(), 0);
         }
         while (i <= quantidadeDeExecucoes) {
             if (agenda.size() > 0) {
-                IItemAgenda a = agenda.get(0);
                 
-                String string = fmt.format(i);
-                String[] part = string.split("[,]");
-                String string2 = part[0] + "." + part[1];
-                i = Double.parseDouble(string2);
-
                 
-                if ( i == a.getTempo()) {
-                    selecionaTipo(a.getObjetoASerExecutado(), i);
+                
+                if ( converteTempoDoublePara4Casas(i) == agenda.get(0).getTempo()) {
+                    selecionaTipo(agenda.remove(0).getObjetoASerExecutado(), i);
                 }
             }
             i = i + 0.0001;
@@ -64,13 +72,13 @@ public class Projeto implements IProjeto {
         
         //U(A,B) = (B – A) * U(0,1) + A
 
-        return (b - a) * g.proximoRandomico() + a;
+        return converteTempoDoublePara4Casas((b - a) * g.proximoRandomico() + a);
     }
 
     public void selecionaTipo(IFilaServidor itemASerProcessado, double tempo) {
         if (itemASerProcessado.getFila().getTipoDeFila() == 0) {
             processaFilaChegada(itemASerProcessado, tempo);
-            System.out.println("oi");
+         //   System.out.println("oi");
         }
         if (itemASerProcessado.getFila().getTipoDeFila() == 1) {
             processaFilaPassagem(itemASerProcessado, tempo);
@@ -84,16 +92,19 @@ public class Projeto implements IProjeto {
     @Override
     public void processaFilaChegada(IFilaServidor evento, double tempo) {
         IServidor aux;
-        IGeraRandomico g = GeraRandomico.getInstance();
-        if (evento.getServidor().getCapacidadeUsada() < evento.getServidor().getCapacidade()) {
+     //   IGeraRandomico g = GeraRandomico.getInstance();
+        if (evento.getServidor().getCapacidadeUsada() <= evento.getServidor().getCapacidade()) {
             for (IServidor s : lista_servidores) {
                 if (s.getNome().equalsIgnoreCase(evento.getServidor().getNome())) {
-                    aux = s;
+                    aux = new Servidor(s);
                     s.aumentaACapacidadeEm1();
                     if (s.getCapacidadeUsada() <= s.getQuantidadeDeServidores()) {
-                        for (IFilaServidor fs : evento.getFila().getEventosDeSaida()) {
-                            if (g.proximoRandomico() > fs.getProbabilidade1() && g.proximoRandomico() < fs.getProbabilidade2()) {
-                                adicionaNaAgenda(new ItemAgenda(calculaRandomicoProblema(fs.getFila().getTempo1(), fs.getFila().getTempo2()) + tempo, fs));
+                        for (IFilaServidor fs : evento.getFila().getEventosDeEntrada()) {
+                            double teste = g.proximoRandomico();
+                            if (teste >= fs.getProbabilidade1() &&  fs.getProbabilidade2()>teste) {
+                                
+                                adicionaNaAgenda(new ItemAgenda(calculaRandomicoProblema(fs.getFila().getTempo1(), converteTempoDoublePara4Casas(fs.getFila().getTempo2()) + tempo), fs));
+                                System.out.println("xx");
                             }
                         }
                     }
@@ -105,8 +116,9 @@ public class Projeto implements IProjeto {
             }
 
         }
-        perda++;
-
+        else{
+            perda++;
+        }
     }
 
     @Override
@@ -152,7 +164,7 @@ public class Projeto implements IProjeto {
                     if (s.getCapacidadeUsada() <= s.getQuantidadeDeServidores()) {
                         for (IFilaServidor fs : evento.getFila().getEventosDeSaida()) {
                             if (g.proximoRandomico() > fs.getProbabilidade1() && g.proximoRandomico() < fs.getProbabilidade2()) {
-                                adicionaNaAgenda(new ItemAgenda(calculaRandomicoProblema(fs.getFila().getTempo1(), fs.getFila().getTempo2()) + tempo, fs));
+                                adicionaNaAgenda(new ItemAgenda(calculaRandomicoProblema(fs.getFila().getTempo1(), fs.getFila().getTempo2() + tempo), fs));
                             }
                         }
                     }
@@ -167,6 +179,8 @@ public class Projeto implements IProjeto {
 
     @Override
     public void adicionaNaAgenda(IItemAgenda novoItem) {
+        
+ 
         agenda.add(novoItem);
         organizaAgenda();
     }
@@ -218,8 +232,18 @@ public class Projeto implements IProjeto {
        lista_filas.add(new Fila(nome,tempo1,tempo2,tipo));
     }
     public void adicionaServidor(IServidor servidor) {
-
         lista_servidores.add(servidor);
+        contabilizador.cadastraServidores(servidor);       
         perda = 0;
     }
+    
+    public double converteTempoDoublePara4Casas(double tempo) {
+        DecimalFormat fmt = new DecimalFormat("0.0000");
+        String string = fmt.format(tempo);
+        String[] part = string.split("[,]");
+        String string2 = part[0] + "." + part[1];
+        return Double.parseDouble(string2);
+
+    }
+    
 }
